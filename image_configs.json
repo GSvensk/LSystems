@@ -1,0 +1,14 @@
+{
+    "small_tree": {
+        "P": 50,
+        "f": 50,
+        "angle": 30,
+        "rules": [
+            {"P": "f[rP]lP"}
+        ],
+        "settings": [
+            {"fill": "(255, 255, 255, 128)"},
+            {"background": "(0, 0, 0)"}
+        ]
+    }
+}
