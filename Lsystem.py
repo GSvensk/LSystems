@@ -17,49 +17,78 @@ def draw_branch(draw, x, y, length, angle):
     return (x_end, y_end, angle)
 
 
-def draw_tree(img, string):
+def calculate_step_size(g):
+    return math.pow(2, -g/2)
+
+
+def axiom(g):
+    return "[rf{}P{}][lf{}P{}]".format(g, g, g, g)
+
+
+def get_number(substring):
+    digit = ""
+    counter = 0
+    
+    while counter < len(substring) and str.isdigit(substring[counter]):
+        digit += substring[counter]
+        counter += 1
+    
+    return int(digit)
+
+
+def draw_tree(img, sequence):
     draw = ImageDraw.Draw(img)
 
     alphabet_translation = defaultdict(str, [
-        ("P", 50),
-        ("f", 50),
+        ("P", 0),
+        ("f", 300),
         ("r", DELTA),
         ("l", -DELTA),
     ])
 
     states = deque()
-    state = (WIDTH/2, HEIGHT - HEIGHT/8, 0)
+    #state = (WIDTH/2, HEIGHT - HEIGHT/8, 0)
+    state = (WIDTH/2, HEIGHT/2, 0)
 
-    for ch in string:
+    for i, ch in enumerate(sequence):
         
-        if ch in ("f", "P"):
-            state = draw_branch(draw, state[0], state[1], alphabet_translation[ch], state[2])
+        if ch == "f":
+            g = get_number(sequence[i+1:])
+            step_size = calculate_step_size(g)
+            state = draw_branch(draw, state[0], state[1], step_size * alphabet_translation[ch], state[2])
         elif ch == "[":
             states.append(state)
         elif ch == "]":
             state = states.pop()
-        else:
+        elif ch == "P":
+            continue
+        elif ch in ("r", "l"):
             state = (state[0], state[1], state[2] + alphabet_translation[ch])
+        elif str.isdigit(ch):
+            continue
 
     return img
 
 
-def rewrite(string):
+def rewrite(sequence, iterations):
 
     new_str = ""
 
-    for ch in string:
+    for i, ch in enumerate(sequence):
         if ch == "P":
-            new_str += "f[rP]lP"
+            g = get_number(sequence[i+1:])
+            new_str += axiom(g+1)
+        elif ch.isdigit() and sequence[i-1] == "P":
+            continue
         else:
             new_str += ch
 
     return new_str
 
 
-RULES = defaultdict(str, [("P", "f[rP]lP"),])
-DELTA = math.radians(30)
-AXIOM = "P"
+#RULES = defaultdict(str, [("P", "f[rP]lP"),])
+DELTA = math.radians(90)
+AXIOM = "P0"
 
 if __name__ == "__main__":
 
@@ -69,11 +98,13 @@ if __name__ == "__main__":
         iterations = int(input("Enter number of interations: "))
 
     while iterations > 0:
-        AXIOM = rewrite(AXIOM)
+        AXIOM = rewrite(AXIOM, iterations)
         iterations -= 1
+
+    print("axiom: ", AXIOM)
 
     img = create_image()
     img = draw_tree(img, AXIOM)
-    img.save('./wip_images/probabilistic_tree.png')
+    img.save('./wip_images/h_tree.png')
 
     
