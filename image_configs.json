@@ -6,6 +6,7 @@
         "rules": [
             {"P": "f[rP]lP"}
         ],
+        "start_state": {"width": "WIDTH/2", "height": "HEIGHT - HEIGHT/8", "angle": 0},
         "settings": [
             {"fill": "(255, 255, 255, 128)"},
             {"background": "(0, 0, 0)"}
