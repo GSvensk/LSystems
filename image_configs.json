@@ -1,15 +1,47 @@
 {
     "small_tree": {
-        "P": 50,
-        "f": 50,
+        "P": 200,
+        "f": 200,
         "angle": 30,
+        "step_rate": 1,
+        "axiom": "P0",
         "rules": [
-            {"P": "f[rP]lP"}
+            {
+                "P": "fg[rPg]lPg"
+            }
         ],
-        "start_state": {"width": "WIDTH/2", "height": "HEIGHT - HEIGHT/8", "angle": 0},
-        "settings": [
-            {"fill": "(255, 255, 255, 128)"},
-            {"background": "(0, 0, 0)"}
-        ]
+        "start_state": {
+            "width": "0.5",
+            "height": "0.875",
+            "angle": 0
+        },
+        "settings": {
+            "fill": "(255, 255, 255, 128)",
+            "background": "(0, 0, 0)"
+        },
+        "default_iterations": 4
+
+    },
+    "h_tree": {
+        "P": 0,
+        "f": 300,
+        "angle": 90,
+        "step_rate": 0.7071,
+        "axiom": "P0",
+        "rules": [
+            {
+                "P": "[rfgPg][lfgPg]"
+            }
+        ],
+        "start_state": {
+            "width": "0.5",
+            "height": "0.5",
+            "angle": 0
+        },
+        "settings": {
+            "fill": "(255, 255, 255, 128)",
+            "background": "(0, 0, 0)"
+        },
+        "default_iterations": 10
     }
 }
