@@ -4,6 +4,7 @@
         "f": 200,
         "angle": 30,
         "step_rate": 1,
+        "angle_deviation_degrees": 0,
         "axiom": "P0",
         "rules": [
             {
@@ -17,16 +18,41 @@
         },
         "settings": {
             "fill": "(255, 255, 255, 128)",
-            "background": "(0, 0, 0)"
+            "background": "(0, 0, 0)",
+            "line_width": "1"
         },
         "default_iterations": 4
-
+    },
+    "rand_tree": {
+        "P": 100,
+        "f": 300,
+        "angle": 30,
+        "step_rate": 0.7071,
+        "angle_deviation_degrees": 4,
+        "axiom": "P0",
+        "rules": [
+            {
+                "P": "fg[rPg]lPg"
+            }
+        ],
+        "start_state": {
+            "width": "0.5",
+            "height": "0.875",
+            "angle": 0
+        },
+        "settings": {
+            "fill": "(255, 255, 255, 128)",
+            "background": "(0, 0, 0)",
+            "line_width": "16"
+        },
+        "default_iterations": 4
     },
     "h_tree": {
         "P": 0,
         "f": 300,
         "angle": 90,
         "step_rate": 0.7071,
+        "angle_deviation_degrees": 0,
         "axiom": "P0",
         "rules": [
             {
@@ -39,8 +65,9 @@
             "angle": 0
         },
         "settings": {
-            "fill": "(255, 255, 255, 128)",
-            "background": "(0, 0, 0)"
+            "fill": "(255, 255, 255, 512)",
+            "background": "(0, 0, 0)",
+            "line_width": "1"
         },
         "default_iterations": 10
     }

@@ -38,7 +38,7 @@ if __name__ == "__main__":
     with open("image_configs.json") as json_file:
         configs = json.load(json_file)
     
-    motive = configs["h_tree"]
+    motive = configs["rand_tree"]
     axiom = motive["axiom"]
     rule = motive["rules"][0]
 
@@ -51,4 +51,4 @@ if __name__ == "__main__":
         axiom = rewrite(axiom, iterations, rule)
         iterations -= 1
 
-    draw_figure.draw_from_config(motive, axiom, "h_tree_test")
+    draw_figure.draw_from_config(motive, axiom, "rand_tree")
