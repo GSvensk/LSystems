@@ -3,6 +3,7 @@ from collections import defaultdict, deque
 import math
 import ast
 import random
+from pathlib import Path
 
 
 def draw_from_config(config, axiom, img_name, width = 1000, height = 1000):
@@ -12,6 +13,7 @@ def draw_from_config(config, axiom, img_name, width = 1000, height = 1000):
 
     img = create_image(background_color)
     img = draw_tree(img, axiom, start_state, alphabet_translation, config["step_rate"],  angle_deviation, config["f"], fill = fill, branch_width = branch_width)
+    Path("./wip_images").mkdir(parents=True, exist_ok=True)
     img.save('./wip_images/{}.png'.format(img_name))
     
 
